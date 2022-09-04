@@ -4,6 +4,35 @@ dict={
                 3:'x= от 0 до -∞ & y= 0 от -∞',
                 4:'x= от 0 до -∞ & y= от 0 до ∞'
                  }
+def length_A_B(a:[],b:[])->float:
+    """получение длинны отрезка"""
+    return ((b[0]-a[0])**2+(a[1]-b[1])**2)**(0.5)
+def enter_num(enterN:int)->[]:
+    """получение переменных x,y,z"""
+    pred=['x','y','z']
+    result=[]
+    for i in range(enterN):
+        result.append(int(input(f'введите значение {pred[i]}')))
+    return result
+def check_pred(list_coordinates:[])->bool:
+    """проверка предиката"""
+    left = ~(list_coordinates[0] | list_coordinates[1] | list_coordinates[2])
+    right = ~ list_coordinates[0] & ~ list_coordinates[1] & ~ list_coordinates[2]
+    result=left==right
+    return result
+
+def input_coord(c_point:int)->[]:
+    """ввод координат"""
+    xy=['X','Y']
+    result=[]
+    for i in range(c_point):
+        try:
+            number=int(input(f'введите координату по оси {xy[i]}:'))
+            result.append(number)
+        except ValueError:
+            print('введите целые числа)')
+    return result
+
 """программa, которая принимает на вход цифру, обозначающую день недели,\ 
 и проверяет, является ли этот день выходным."""
 #Пример:
@@ -31,19 +60,6 @@ else: print('конец вычисления дней недели, следую
 user_exit=1    
 """программа для проверки истинности утверждения ¬(X ⋁ Y ⋁ Z) = ¬X ⋀ ¬Y ⋀ ¬Z \
 для всех значений предикат."""
-def enter_num(enterN:int)->[]:
-    """получение предиката"""
-    pred=['x','y','z']
-    result=[]
-    for i in range(enterN):
-        result.append(input(f'введите значение {pred[i]}'))
-    return result
-def check_pred(list_coordinates:[])->bool:
-    """проверка предиката"""
-    left = not(list_coordinates[0] or list_coordinates[1] or list_coordinates[2])
-    right = not list_coordinates[0] and not list_coordinates[1] and not list_coordinates[2]
-    result=left==right
-    return result
 while user_exit !=0:
     
     try:
@@ -112,20 +128,7 @@ print('программа принимает на вход координаты 
 #- A (3,6); B (2,1) -> 5,09
 #- A (7,-5); B (1,-1) -> 7,21
 user_exit=1
-def input_coord(c_point:int)->[]:
-    """ввод координат"""
-    xy=['X','Y']
-    result=[]
-    for i in range(c_point):
-        try:
-            number=int(input(f'введите координату по оси {xy[i]}:'))
-            result.append(number)
-        except ValueError:
-            print('введите целые числа)')
-    return result
-def length_A_B(a:[],b:[])->float:
-    """получение длинны отрезка"""
-    return ((b[0]-a[0])**2+(a[1]-b[1])**2)**(0.5)
+
 while user_exit:
     user_exit=int(input('для продолжения (1), выход(0)\n'))
     if not user_exit:
